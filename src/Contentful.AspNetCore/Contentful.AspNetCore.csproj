@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Forked .NET SDK for the Contentful Content Delivery and Management API for ASP.NET core.</Description>
-    <PackageId>contentful.aspnetcore</PackageId>
+    <PackageId>contentful.aspnetcore.netfive</PackageId>
     <NeutralLanguage>en-US</NeutralLanguage>
     <VersionPrefix>4.1.1</VersionPrefix>
-    <TargetFramework>net5</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <Authors>Contentful</Authors>
     <Copyright>Contentful GmbH.</Copyright>
     <AssemblyName>Contentful.AspNetCore</AssemblyName>
