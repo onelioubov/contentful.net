@@ -65,5 +65,39 @@ class Build : NukeBuild
                 .SetInformationalVersion(GitVersion.InformationalVersion)
                 .EnableNoRestore());
         });
-
+    
+    Target Test => _ => _
+        .After(Compile)
+        .Executes(() =>
+        {
+            var testProjects = Solution.AllProjects.Where(project =>
+                project.Path.ToString().Contains(TestsDirectory.ToString()));
+            DotNetTest(t => t
+                .EnableNoBuild()
+                .SetConfiguration(Configuration)
+                .SetProcessWorkingDirectory(TestsDirectory)
+                .CombineWith(testProjects, (x, p) => x
+                    .SetProjectFile(p)
+                    .SetLogger("xunit;LogFilePath=TestResults/" + p.Name + "-Result.xml")));
+        });
+    
+    Target Publish => _ => _
+        .After(Test)
+        .Executes(() =>
+        {
+            var projectSolution = Solution.AllProjects.Where(p =>
+                !p.Name.Contains("Tests")
+                && !p.Name.Contains("build")
+                && p.Is(ProjectType.CSharpProject));
+        
+            DotNetPublish(s => s
+                .SetConfiguration(Configuration)
+                .SetAssemblyVersion(GitVersion.AssemblySemVer)
+                .SetFileVersion(GitVersion.AssemblySemFileVer)
+                .SetInformationalVersion(GitVersion.InformationalVersion)
+                .EnableNoRestore()
+                .CombineWith(projectSolution, (x, p) => x
+                    .SetProject(p)
+                    .SetOutput(ArtifactsDirectory / p.Name)));
+        });
 }

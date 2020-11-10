@@ -4103,7 +4103,7 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleEnvironment.json");
-            var argException = new ArgumentException("You must provide a name for the environment.", "sourceEnvironmentId");
+            var argException = new ArgumentException("You must provide an id for the source environment.", "sourceEnvironmentId");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CloneEnvironment("pop", "bop", s));
