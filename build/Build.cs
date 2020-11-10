@@ -100,4 +100,21 @@ class Build : NukeBuild
                     .SetProject(p)
                     .SetOutput(ArtifactsDirectory / p.Name)));
         });
+    
+    Target Pack => _ => _
+        .DependsOn(Publish)
+        .Executes(() =>
+        {
+            var version = GitRepository.Branch.Equals("master", StringComparison.InvariantCultureIgnoreCase) ? GitVersion.MajorMinorPatch : GitVersion.NuGetVersionV2;
+            var projects = Solution.AllProjects.Where(p =>
+                !p.Name.Contains("Tests")
+                && !p.Name.Contains("build")
+                && p.Is(ProjectType.CSharpProject));
+
+            DotNetPack(s => s
+                .SetVersion(version)
+                .SetConfiguration(Configuration)
+                .CombineWith(projects, (x, p) => x
+                    .SetOutputDirectory(ArtifactsDirectory / p.Name + ".Package")));
+        });
 }

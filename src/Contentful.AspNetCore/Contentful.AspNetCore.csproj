@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Description>Official .NET SDK for the Contentful Content Delivery and Management API for ASP.NET core.</Description>
+    <Description>Forked .NET SDK for the Contentful Content Delivery and Management API for ASP.NET core.</Description>
     <PackageId>contentful.aspnetcore</PackageId>
     <NeutralLanguage>en-US</NeutralLanguage>
     <VersionPrefix>4.1.1</VersionPrefix>
@@ -9,27 +9,13 @@
     <Copyright>Contentful GmbH.</Copyright>
     <AssemblyName>Contentful.AspNetCore</AssemblyName>
     <PackageTags>contentful;CMS;aspnetcore</PackageTags>
-    <PackageIconUrl>https://d21buns5ku92am.cloudfront.net/41748/images/210510-contentful_85x85@2x-550fdb-large-1464181794.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/contentful/contentful.net</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/onelioubov/contentful.net</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <Version>5.0.4</Version>
-    <AssemblyVersion>5.0.4.0</AssemblyVersion>
-    <RepositoryUrl>https://github.com/contentful/contentful.net</RepositoryUrl>
-    <FileVersion>5.0.4.0</FileVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.5\Contentful.AspNetCore.xml</DocumentationFile>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <RepositoryUrl>https://github.com/onelioubov/contentful.net</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="contentful.csharp" Version="5.0.3" />
-    <PackageReference Include="gitlink" Version="3.1.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.1.0" />
