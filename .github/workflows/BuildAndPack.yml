@@ -19,6 +19,10 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.100-rc.1.20452.10
+      - name: Setup .NET Core 3.1 (This will be reduntant eventually, but I'll fix it later)
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
       - name: Nuke restore + build + test + pack
         run: ./build.sh --configuration Release -target compile+test+pack
       - name: Push package to Artifactory
