@@ -115,6 +115,7 @@ class Build : NukeBuild
                 .SetVersion(version)
                 .SetConfiguration(Configuration)
                 .CombineWith(projects, (x, p) => x
+                    .SetProject(p)
                     .SetOutputDirectory(ArtifactsDirectory / p.Name + ".Package")));
         });
 }
