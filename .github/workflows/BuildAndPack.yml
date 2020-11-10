@@ -1,0 +1,25 @@
+name: Build and Pack
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Fetch all history for all tags and branches
+        run: git fetch --prune --unshallow
+      - name: Setup .NET 5
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.100-rc.1.20452.10
+      - name: Nuke restore + build + test + pack
+        run: ./build.sh --configuration Release -target compile+test+pack
+      - name: Push package to Artifactory
+        run: dotnet nuget push ./artifacts/*.nupkg -k ${{ secrets.Artifactory }} -s https://onelioubov.jfrog.io/artifactory/api/nuget/v3/nuget-local --no-symbols true
