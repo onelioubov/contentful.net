@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>    
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>net5</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Contentful.AspNetCore\Contentful.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Contentful.AspNetCore\Contentful.AspNetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

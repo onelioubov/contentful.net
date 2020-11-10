@@ -57,12 +57,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             var httpClient = new HttpClient(_handler);
+            var argException = new ArgumentException("The ContentfulOptions cannot be null.", "options");
 
             //Act
             var ex = Assert.Throws<ArgumentException>(() => new ContentfulClient(httpClient, options: null));
 
             //Assert
-            Assert.Equal($"The ContentfulOptions cannot be null.{Environment.NewLine}Parameter name: options", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -739,11 +740,12 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"NextSyncUrl.json");
+            var argException = new ArgumentException("nextPageUrl must be specified.", "nextSyncOrPageUrl");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.SyncNextResult(""));
             //Assert
-            Assert.Equal($"nextPageUrl must be specified.{Environment.NewLine}Parameter name: nextSyncOrPageUrl", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]

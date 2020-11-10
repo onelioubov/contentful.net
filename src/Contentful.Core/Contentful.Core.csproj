@@ -5,7 +5,7 @@
     <AssemblyTitle>contentful.net</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
     <VersionPrefix>4.1.1</VersionPrefix>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net5</TargetFramework>
     <Authors>Contentful</Authors>
     <Copyright>Contentful GmbH.</Copyright>
     <AssemblyName>Contentful.Core</AssemblyName>

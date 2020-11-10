@@ -233,11 +233,13 @@ namespace Contentful.Core.Tests
             {
                 Name = "Barbossa"
             };
+            var argException = new ArgumentException("The id of the content type must be set.", "contentType");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CreateOrUpdateContentType(contentType));
 
             //Assert
-            Assert.Equal($"The id of the content type must be set.{Environment.NewLine}Parameter name: contentType", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -1011,11 +1013,12 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             var entry = new Entry<dynamic>();
+            var argException = new ArgumentException("The content type id must be set.", "contentTypeId");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CreateEntry(entry, contentTypeId: ""));
             //Assert
-            Assert.Equal($"The content type id must be set.{Environment.NewLine}Parameter name: contentTypeId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -1925,13 +1928,13 @@ namespace Contentful.Core.Tests
         public async Task GetWebhookShouldThrowIfNoIdSet(string id)
         {
             //Arrange
-
+            var argException = new ArgumentException("The id of the webhook must be set.", "webhookId");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetWebhook(id));
 
             //Assert
-            Assert.Equal($"The id of the webhook must be set.{Environment.NewLine}Parameter name: webhookId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -2003,12 +2006,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"WebhookCallDetails.json");
-
+            var argException = new ArgumentException("The id of the webhook must be set.", "webhookId");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetWebhookCallDetails("some", id));
 
             //Assert
-            Assert.Equal($"The id of the webhook must be set.{Environment.NewLine}Parameter name: webhookId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
@@ -2018,12 +2022,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"WebhookCallDetails.json");
+            var argException = new ArgumentException("The id of the webhook call must be set.", "callId");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetWebhookCallDetails(id, "some"));
 
             //Assert
-            Assert.Equal($"The id of the webhook call must be set.{Environment.NewLine}Parameter name: callId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
@@ -2033,12 +2038,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"WebhookCallDetailsCollection.json");
-
+            var argException = new ArgumentException("The id of the webhook must be set.", "webhookId");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetWebhookCallDetailsCollection(id));
 
             //Assert
-            Assert.Equal($"The id of the webhook must be set.{Environment.NewLine}Parameter name: webhookId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -2063,12 +2069,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"WebhookHealth.json");
-
+            var argException = new ArgumentException("The id of the webhook must be set.", "webhookId");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetWebhookHealth(id));
 
             //Assert
-            Assert.Equal($"The id of the webhook must be set.{Environment.NewLine}Parameter name: webhookId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -2383,12 +2390,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleSnapshot.json");
-
+            var argException = new ArgumentException("The id of the snapshot must be set.", "snapshotId");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetSnapshotForEntry(id, "something"));
 
             //Assert
-            Assert.Equal($"The id of the snapshot must be set.{Environment.NewLine}Parameter name: snapshotId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
@@ -2398,12 +2406,12 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleSnapshot.json");
-
+            var argException = new ArgumentException("The id of the entry must be set.", "entryId");
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetSnapshotForEntry("something", id));
 
             //Assert
-            Assert.Equal($"The id of the entry must be set.{Environment.NewLine}Parameter name: entryId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -2450,12 +2458,12 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"ContentTypeSnapshotsCollection.json");
-
+            var argException = new ArgumentException("The id of the content type must be set.", "contentTypeId");
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetAllSnapshotsForContentType(id));
 
             //Assert
-            Assert.Equal($"The id of the content type must be set.{Environment.NewLine}Parameter name: contentTypeId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
@@ -2573,12 +2581,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleSpaceMembershipsCollection.json");
-
+            var argException = new ArgumentException("The id of the entry must be set.", "entryId");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetSnapshotForEntry("something", id));
 
             //Assert
-            Assert.Equal($"The id of the entry must be set.{Environment.NewLine}Parameter name: entryId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
@@ -2757,12 +2766,13 @@ namespace Contentful.Core.Tests
         public async Task UpdateApiKeyShouldThrowIfNoIdSet(string id)
         {
             //Arrange
-
+            var argException = new ArgumentException("The id of the api key must be set.", "id");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.UpdateApiKey(id, "Key sharp2", "This is the desc again", 5));
 
             //Assert
-            Assert.Equal($"The id of the api key must be set.{Environment.NewLine}Parameter name: id", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -2979,11 +2989,13 @@ namespace Contentful.Core.Tests
             {
                 Name = "trul"
             };
+            var argException = new ArgumentException("The id of the extension must be set.", "extension");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CreateOrUpdateExtension(ext));
 
             //Assert
-            Assert.Equal($"The id of the extension must be set.{Environment.NewLine}Parameter name: extension", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
@@ -4047,11 +4059,11 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleEnvironment.json");
-
+            var argException = new ArgumentException("You must provide an id for the environment.", "id");
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CreateOrUpdateEnvironment(s, ""));
             //Assert
-            Assert.Equal($"You must provide an id for the environment.{Environment.NewLine}Parameter name: id", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
@@ -4061,39 +4073,42 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleEnvironment.json");
+            var argException = new ArgumentException("You must provide an id for the environment.", "id");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CloneEnvironment(s, "", ""));
             //Assert
-            Assert.Equal($"You must provide an id for the environment.{Environment.NewLine}Parameter name: id", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public async Task CloneEnvironmenShouldThrowIfNameNotSet(string s)
+        public async Task CloneEnvironmentShouldThrowIfNameNotSet(string s)
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleEnvironment.json");
+            var argException = new ArgumentException("You must provide a name for the environment.", "name");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CloneEnvironment("pop", s, ""));
             //Assert
-            Assert.Equal($"You must provide a name for the environment.{Environment.NewLine}Parameter name: name", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public async Task CloneEnvironmenShouldThrowISourceNotSet(string s)
+        public async Task CloneEnvironmentShouldThrowISourceNotSet(string s)
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleEnvironment.json");
+            var argException = new ArgumentException("You must provide a name for the environment.", "sourceEnvironmentId");
 
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.CloneEnvironment("pop", "bop", s));
             //Assert
-            Assert.Equal($"You must provide an id for the source environment.{Environment.NewLine}Parameter name: sourceEnvironmentId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -4148,11 +4163,11 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleEnvironment.json");
-
+            var argException = new ArgumentException("You must provide an id for the environment.", "id");
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.GetEnvironment(s));
             //Assert
-            Assert.Equal($"You must provide an id for the environment.{Environment.NewLine}Parameter name: id", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -4177,11 +4192,11 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = new HttpResponseMessage();
-
+            var argException = new ArgumentException("You must provide an id for the environment.", "id");
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.DeleteEnvironment(s));
             //Assert
-            Assert.Equal($"You must provide an id for the environment.{Environment.NewLine}Parameter name: id", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Fact]
@@ -4385,12 +4400,13 @@ namespace Contentful.Core.Tests
         {
             //Arrange
             _handler.Response = GetResponseFromFile(@"SampleOrgMembershipsCollection.json");
-
+            var argException = new ArgumentException("The id of the organization membership must be set.", "membershipId");
+            
             //Act
             var ex = await Assert.ThrowsAsync<ArgumentException>(async () => await _client.UpdateOrganizationMembership("something", id, "org"));
 
             //Assert
-            Assert.Equal($"The id of the organization membership must be set.{Environment.NewLine}Parameter name: membershipId", ex.Message);
+            Assert.Equal(argException.Message, ex.Message);
         }
 
         [Theory]
