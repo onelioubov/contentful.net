@@ -26,4 +26,4 @@ jobs:
       - name: Nuke restore + build + test + pack
         run: ./build.sh --configuration Release -target compile+test+pack
       - name: Push package to Artifactory
-        run: dotnet nuget push ./artifacts/**/*.nupkg -k ${{ secrets.Artifactory }} -s https://onelioubov.jfrog.io/artifactory/api/nuget/v3/nuget-local --no-symbols true
+        run: dotnet nuget push ./artifacts/**/contentful.csharp.*.nupkg -k ${{ secrets.Artifactory }} -s https://onelioubov.jfrog.io/artifactory/api/nuget/v3/nuget-local --no-symbols true
